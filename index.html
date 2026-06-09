@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ikigai Sushi & Hibachi — St. Petersburg's Best Sushi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#fef7ee',
+              100: '#fdedd3',
+              200: '#fad7a5',
+              300: '#f6b96d',
+              400: '#f19333',
+              500: '#ee7811',
+              600: '#df5e07',
+              700: '#b94508',
+              800: '#93360e',
+              900: '#772e0f',
+            },
+            sushi: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              200: '#bbf7d0',
+              300: '#86efac',
+              400: '#4ade80',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+              950: '#052e16',
+            },
+            noir: {
+              50: '#f8f8f8',
+              100: '#e8e8e8',
+              200: '#d1d1d1',
+              300: '#b0b0b0',
+              400: '#888888',
+              500: '#6d6d6d',
+              600: '#5a5a5a',
+              700: '#4a4a4a',
+              800: '#2d2d2d',
+              900: '#1a1a1a',
+              950: '#0d0d0d',
+            }
+          },
+          fontFamily: {
+            display: ['Playfair Display', 'serif'],
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    html { scroll-behavior: smooth; }
+    
+    .font-display { font-family: 'Playfair Display', serif; }
+    
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(13,13,13,0.92) 0%, rgba(13,13,13,0.75) 50%, rgba(13,13,13,0.6) 100%);
+    }
+    
+    .glow-orange {
+      box-shadow: 0 0 40px rgba(238,120,17,0.3), 0 0 80px rgba(238,120,17,0.1);
+    }
+    
+    .glow-green {
+      box-shadow: 0 0 30px rgba(34,197,94,0.2);
+    }
+    
+    .menu-card:hover .menu-img {
+      transform: scale(1.08);
+    }
+    
+    .review-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    
+    .float-anim {
+      animation: floaty 6s ease-in-out infinite;
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    
+    .star-rating { color: #f19333; }
+    
+    .nav-scrolled {
+      background: rgba(13,13,13,0.97) !important;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    
+    .hero-pattern {
+      background-image: radial-gradient(circle at 20% 80%, rgba(238,120,17,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(34,197,94,0.06) 0%, transparent 50%);
+    }
+    
+    .badge-pulse {
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(238,120,17,0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(238,120,17,0); }
+    }
+    
+    .kanji-watermark {
+      font-size: 20rem;
+      opacity: 0.02;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      font-family: 'Playfair Display', serif;
+    }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0d0d0d; }
+    ::-webkit-scrollbar-thumb { background: #2d2d2d; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
+
+    .catering-gradient {
+      background: linear-gradient(135deg, #052e16 0%, #0d0d0d 100%);
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, #772e0f 0%, #0d0d0d 60%, #052e16 100%);
+    }
+
+    .review-scroll {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .review-scroll::-webkit-scrollbar { display: none; }
+  </style>
+</head>
+<body class="bg-noir-950 text-noir-50 overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center glow-orange">
+            <span class="text-white font-bold text-lg font-display">IK</span>
+          </div>
+          <div class="hidden sm:block">
+            <span class="text-white font-display font-bold text-xl tracking-wide">Ikigai</span>
+            <span class="text-brand-400 text-xs block -mt-1 tracking-widest uppercase">Sushi & Hibachi</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#menu" class="text-noir-300 hover:text-brand-400 transition-colors text-sm font-medium tracking-wide">Menu</a>
+          <a href="#reviews" class="text-noir-300 hover:text-brand-400 transition-colors text-sm font-medium tracking-wide">Reviews</a>
+          <a href="#catering" class="text-noir-300 hover:text-brand-400 transition-colors text-sm font-medium tracking-wide">Catering</a>
+          <a href="#about" class="text-noir-300 hover:text-brand-400 transition-colors text-sm font-medium tracking-wide">About</a>
+          <a href="#contact" class="text-noir-300 hover:text-brand-400 transition-colors text-sm font-medium tracking-wide">Contact</a>
+        </div>
+
+        <!-- CTA + Mobile -->
+        <div class="flex items-center gap-4">
+          <a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-full font-semibold text-sm transition-all hover:scale-105 glow-orange">
+            Order Now
+          </a>
+          <button id="mobileMenuBtn" class="md:hidden text-white p-2">
+            <i data-lucide="menu" class="w-6 h-6"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="md:hidden hidden bg-noir-950/98 backdrop-blur-xl border-t border-noir-800">
+      <div class="px-6 py-6 space-y-4">
+        <a href="#menu" class="block text-noir-200 hover:text-brand-400 font-medium text-lg mobile-link">Menu</a>
+        <a href="#reviews" class="block text-noir-200 hover:text-brand-400 font-medium text-lg mobile-link">Reviews</a>
+        <a href="#catering" class="block text-noir-200 hover:text-brand-400 font-medium text-lg mobile-link">Catering</a>
+        <a href="#about" class="block text-noir-200 hover:text-brand-400 font-medium text-lg mobile-link">About</a>
+        <a href="#contact" class="block text-noir-200 hover:text-brand-400 font-medium text-lg mobile-link">Contact</a>
+        <a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="block bg-brand-500 hover:bg-brand-600 text-white px-6 py-3 rounded-full font-semibold text-center mt-4">Order Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative min-h-screen flex items-center hero-pattern">
+    <div class="absolute inset-0">
+      <img src="http://static.photos/food/1200x630/42" alt="Sushi" class="w-full h-full object-cover" />
+      <div class="hero-gradient absolute inset-0"></div>
+    </div>
+    
+    <div class="absolute top-32 right-12 hidden lg:block opacity-10 float-anim">
+      <span class="text-brand-400 text-9xl font-display">寿</span>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 lg:py-0">
+      <div class="max-w-3xl">
+        <div class="fade-up inline-flex items-center gap-2 bg-brand-500/15 border border-brand-500/30 rounded-full px-4 py-1.5 mb-6 badge-pulse">
+          <span class="w-2 h-2 bg-brand-400 rounded-full"></span>
+          <span class="text-brand-300 text-sm font-medium">St. Petersburg's #1 Rated Sushi</span>
+        </div>
+        
+        <h1 class="fade-up stagger-1 font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-[1.05] mb-6">
+          Fresh Sushi.<br>
+          <span class="text-brand-400">Sizzling</span> Hibachi.<br>
+          Good Vibes.
+        </h1>
+        
+        <p class="fade-up stagger-2 text-noir-300 text-lg sm:text-xl max-w-xl mb-10 leading-relaxed">
+          From hand-crafted rolls to perfectly seasoned hibachi — experience why hundreds call this their go-to spot in St. Pete.
+        </p>
+        
+        <div class="fade-up stagger-3 flex flex-wrap gap-4">
+          <a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 glow-orange">
+            Order Online
+            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+          </a>
+          <a href="#menu" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all border border-white/10">
+            View Menu
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="fade-up stagger-4 flex items-center gap-6 mt-12 pt-8 border-t border-noir-800/50">
+          <div class="flex items-center gap-2">
+            <div class="flex -space-x-1">
+              <i data-lucide="star" class="w-4 h-4 text-brand-400 fill-brand-400"></i>
+              <i data-lucide="star" class="w-4 h-4 text-brand-400 fill-brand-400"></i>
+              <i data-lucide="star" class="w-4 h-4 text-brand-400 fill-brand-400"></i>
+              <i data-lucide="star" class="w-4 h-4 text-brand-400 fill-brand-400"></i>
+              <i data-lucide="star" class="w-4 h-4 text-brand-400 fill-brand-400"></i>
+            </div>
+            <span class="text-white font-bold">4.8</span>
+            <span class="text-noir-400 text-sm">(396+ reviews)</span>
+          </div>
+          <div class="w-px h-6 bg-noir-700"></div>
+          <div class="flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4 text-sushi-400"></i>
+            <span class="text-noir-300 text-sm">Fast & Fresh</span>
+          </div>
+          <div class="w-px h-6 bg-noir-700 hidden sm:block"></div>
+          <div class="hidden sm:flex items-center gap-2">
+            <i data-lucide="heart" class="w-4 h-4 text-red-400"></i>
+            <span class="text-noir-300 text-sm">Family Owned</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevron-down" class="w-6 h-6 text-noir-500"></i>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="relative z-10 bg-noir-900 border-y border-noir-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="text-center fade-up">
+          <div class="text-3xl sm:text-4xl font-display font-bold text-brand-400" data-count="396">0</div>
+          <div class="text-noir-400 text-sm mt-1">5-Star Reviews</div>
+        </div>
+        <div class="text-center fade-up stagger-1">
+          <div class="text-3xl sm:text-4xl font-display font-bold text-sushi-400" data-count="50">0</div>
+          <div class="text-noir-400 text-sm mt-1">Menu Items</div>
+        </div>
+        <div class="text-center fade-up stagger-2">
+          <div class="text-3xl sm:text-4xl font-display font-bold text-brand-400" data-count="10">0</div>
+          <div class="text-noir-400 text-sm mt-1">Years Serving St. Pete</div>
+        </div>
+        <div class="text-center fade-up stagger-3">
+          <div class="text-3xl sm:text-4xl font-display font-bold text-sushi-400" data-count="15">0</div>
+          <div class="text-noir-400 text-sm mt-1">Minute Avg. Wait</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="relative py-24 lg:py-32 bg-noir-950">
+    <div class="kanji-watermark select-none">語</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="text-center mb-16">
+        <span class="fade-up text-brand-400 text-sm font-semibold tracking-widest uppercase">Our Menu</span>
+        <h2 class="fade-up stagger-1 font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-3">Crafted with <span class="text-brand-400">Passion</span></h2>
+        <p class="fade-up stagger-2 text-noir-400 text-lg mt-4 max-w-2xl mx-auto">Every roll, every bowl — made fresh to order with premium ingredients and bold flavors.</p>
+      </div>
+
+      <!-- Category Tabs -->
+      <div class="fade-up flex flex-wrap justify-center gap-3 mb-14">
+        <button class="menu-tab active bg-brand-500 text-white px-6 py-2.5 rounded-full font-semibold text-sm transition-all" data-tab="all">All</button>
+        <button class="menu-tab bg-noir-800 text-noir-300 hover:bg-noir-700 px-6 py-2.5 rounded-full font-semibold text-sm transition-all" data-tab="sushi">Sushi Rolls</button>
+        <button class="menu-tab bg-noir-800 text-noir-300 hover:bg-noir-700 px-6 py-2.5 rounded-full font-semibold text-sm transition-all" data-tab="hibachi">Hibachi</button>
+        <button class="menu-tab bg-noir-800 text-noir-300 hover:bg-noir-700 px-6 py-2.5 rounded-full font-semibold text-sm transition-all" data-tab="bowls">Poke & Bowls</button>
+        <button class="menu-tab bg-noir-800 text-noir-300 hover:bg-noir-700 px-6 py-2.5 rounded-full font-semibold text-sm transition-all" data-tab="apps">Appetizers</button>
+        <button class="menu-tab bg-noir-800 text-noir-300 hover:bg-noir-700 px-6 py-2.5 rounded-full font-semibold text-sm transition-all" data-tab="drinks">Drinks</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div id="menuGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Sushi Rolls -->
+        <div class="menu-card group" data-category="sushi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/10" alt="Volcano Roll" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 left-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">🔥 Fan Favorite</div>
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$14</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Volcano Roll</h3>
+              <p class="text-noir-400 text-sm mt-1">Our signature volcano mix that keeps you coming back — bold, spicy, unforgettable.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="sushi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/15" alt="Dragon Roll" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$16</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Dragon Roll</h3>
+              <p class="text-noir-400 text-sm mt-1">Eel, avocado & cucumber — beautifully presented and incredibly delicious.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="sushi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/22" alt="Mount Fuji Roll" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$15</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Mount Fuji Roll</h3>
+              <p class="text-noir-400 text-sm mt-1">A towering masterpiece of flavor — our volcano mix standout since day one.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="sushi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/33" alt="Ryu Roll" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$14</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Ryu Roll</h3>
+              <p class="text-noir-400 text-sm mt-1">A local favorite — creamy, crunchy, and packed with flavor. Available with cream cheese.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="sushi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/44" alt="Rainbow Roll" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 left-3 bg-sushi-500 text-white text-xs font-bold px-3 py-1 rounded-full">🌟 Popular</div>
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$18</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Rainbow Roll</h3>
+              <p class="text-noir-400 text-sm mt-1">A colorful assortment of fresh sashimi draped over a California roll.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="sushi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/55" alt="Freeman Roll" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$14</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Freeman Roll</h3>
+              <p class="text-noir-400 text-sm mt-1">The roll that never disappoints — a perfect balance of flavor and texture.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hibachi -->
+        <div class="menu-card group" data-category="hibachi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/60" alt="Chicken Hibachi" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 left-3 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">🔥 NEW</div>
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$14</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Chicken Hibachi</h3>
+              <p class="text-noir-400 text-sm mt-1">Buttery rice, perfectly seasoned chicken — so good you won't even need the yum yum sauce.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="hibachi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/66" alt="Steak Hibachi" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$18</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Steak Hibachi</h3>
+              <p class="text-noir-400 text-sm mt-1">Tender steak hibachi with buttery fried rice and grilled vegetables.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="hibachi">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/70" alt="Hibachi Combo" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 left-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">⭐ Best Value</div>
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$22</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Hibachi Combo</h3>
+              <p class="text-noir-400 text-sm mt-1">Can't decide? Get the best of both with chicken & steak hibachi.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bowls -->
+        <div class="menu-card group" data-category="bowls">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/80" alt="Tuna Poke Bowl" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 left-3 bg-brand-500 text-white text-xs font-bold px-3 py-1 rounded-full">🔥 Fan Favorite</div>
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$12</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Tuna Poke Bowl</h3>
+              <p class="text-noir-400 text-sm mt-1">Fresh tuna over sushi rice with all the toppings — generous, filling, delicious.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="bowls">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/88" alt="Sushi Bowl" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$12</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Sushi Bowl</h3>
+              <p class="text-noir-400 text-sm mt-1">All the sushi goodness, eat with a fork! Customizable with your favorite toppings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="bowls">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/95" alt="Eel Rice Bowl" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$14</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Eel Rice Bowl</h3>
+              <p class="text-noir-400 text-sm mt-1">Fresh eel over perfectly cooked rice drizzled with savory eel sauce.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Appetizers -->
+        <div class="menu-card group" data-category="apps">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/100" alt="Pork Bao Buns" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 left-3 bg-sushi-500 text-white text-xs font-bold px-3 py-1 rounded-full">🌟 Must Try</div>
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$7</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Pork Bao Buns</h3>
+              <p class="text-noir-400 text-sm mt-1">Perfectly seasoned and full of flavor — the best bao in St. Pete, hands down.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="apps">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/110" alt="Crab Rangoon" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$7</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Crab Rangoon</h3>
+              <p class="text-noir-400 text-sm mt-1">Not your average rangoon — crispy, creamy, and beyond delicious.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="apps">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/118" alt="Fried Chicken Wings" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$9</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Fried Chicken Wings</h3>
+              <p class="text-noir-400 text-sm mt-1">Super crunchy, perfect sauce pairing — speak for themselves.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Drinks -->
+        <div class="menu-card group" data-category="drinks">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/120" alt="Thai Iced Tea" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$4</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Thai Iced Tea</h3>
+              <p class="text-noir-400 text-sm mt-1">Homemade and perfectly sweet — to die for.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="drinks">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/125" alt="Vietnamese Coffee" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$5</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Vietnamese Coffee</h3>
+              <p class="text-noir-400 text-sm mt-1">Rich, bold, and perfectly sweetened — the best in St. Pete.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card group" data-category="drinks">
+          <div class="bg-noir-900 rounded-2xl overflow-hidden border border-noir-800 hover:border-brand-500/30 transition-all duration-500">
+            <div class="relative h-52 overflow-hidden">
+              <img src="http://static.photos/food/640x360/130" alt="Sake" class="menu-img w-full h-full object-cover transition-transform duration-700">
+              <div class="absolute top-3 right-3 bg-noir-950/80 backdrop-blur-sm text-brand-300 text-sm font-bold px-3 py-1 rounded-full">$8</div>
+            </div>
+            <div class="p-5">
+              <h3 class="text-white font-bold text-lg">Sake</h3>
+              <p class="text-noir-400 text-sm mt-1">Served hot or cold — the perfect pairing to your sushi experience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-14 fade-up">
+        <a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 glow-orange">
+          View Full Menu & Order
+          <i data-lucide="arrow-right" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews Section -->
+  <section id="reviews" class="py-24 lg:py-32 bg-noir-900 relative overflow-hidden">
+    <div class="absolute inset-0 hero-pattern opacity-30"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="text-center mb-16">
+        <span class="fade-up text-brand-400 text-sm font-semibold tracking-widest uppercase">Testimonials</span>
+        <h2 class="fade-up stagger-1 font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white mt-3">What Our <span class="text-brand-400">Regulars</span> Say</h2>
+        <p class="fade-up stagger-2 text-noir-400 text-lg mt-4">Real reviews from real customers — this is why Ikigai is St. Pete's favorite.</p>
+      </div>
+
+      <!-- Scrollable Reviews -->
+      <div class="relative">
+        <div id="reviewsContainer" class="flex gap-6 overflow-x-auto review-scroll pb-4 snap-x snap-mandatory">
+          
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"Absolutely incredible experience. Staff is very professional, kind, friendly & have such good energy about them. I love when you can tell the establishment takes pride in what they do."</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 font-bold text-sm">7M</div>
+              <div>
+                <div class="text-white font-semibold text-sm">7 months ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"Best sushi and hibachi in St Petersburg. Enjoyed the vibe. Sushi on another level. Highly recommend this place. Great prices great food and great people cheers 🍻"</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-sushi-500/20 flex items-center justify-center text-sushi-400 font-bold text-sm">5M</div>
+              <div>
+                <div class="text-white font-semibold text-sm">5 months ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"The food was phenomenal. This is not just a restaurant — it's a vibe. Fast, fresh, fabulous at a fantastic price. The volcano roll is to die for 🌋"</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 font-bold text-sm">4M</div>
+              <div>
+                <div class="text-white font-semibold text-sm">4 months ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"I could genuinely eat here everyday. The flavors, the quality, the atmosphere, all 10's. BEST Sushi in the city. The pork bao is perfectly seasoned and full of flavor!"</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-sushi-500/20 flex items-center justify-center text-sushi-400 font-bold text-sm">11M</div>
+              <div>
+                <div class="text-white font-semibold text-sm">11 months ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"Ikigai ain't here to play; it's here to feed you like you've been starving your whole damn life. I pulled up thinking I was just gonna snack… nah, this was a FEAST."</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 font-bold text-sm">11M</div>
+              <div>
+                <div class="text-white font-semibold text-sm">11 months ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"New menu alert! Hibachi is NOW on the menu. Buttery rice and perfectly cooked hibachi chicken. Yummy! Their yum yum sauce is to die for. I could put this sauce on anything."</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-sushi-500/20 flex items-center justify-center text-sushi-400 font-bold text-sm">9M</div>
+              <div>
+                <div class="text-white font-semibold text-sm">9 months ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"My husband and I live just up the street and this will be our new spot!! I am very picky about my sushi and had the best roll of my life today. The owners are so kind and welcoming."</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-brand-500/20 flex items-center justify-center text-brand-400 font-bold text-sm">1Y</div>
+              <div>
+                <div class="text-white font-semibold text-sm">A year ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card snap-start shrink-0 w-[340px] sm:w-[380px] bg-noir-800 rounded-2xl p-6 border border-noir-700/50">
+            <div class="flex items-center gap-1 mb-3 star-rating">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-noir-200 text-sm leading-relaxed mb-4">"Pound for pound one of the best places in the city. Great experience, awesome staff! Run, don't walk. Perfect for any occasion. To-go platters perfect for parties."</p>
+            <div class="flex items-center gap-3 mt-auto pt-4 border-t border-noir-700/50">
+              <div class="w-9 h-9 rounded-full bg-sushi-500/20 flex items-center justify-center text-sushi-400 font-bold text-sm">2Y</div>
+              <div>
+                <div class="text-white font-semibold text-sm">2 years ago</div>
+                <div class="text-noir-500 text-xs">Google Review</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <!-- Scroll arrows -->
+        <div class="flex justify-center gap-3 mt-6">
+          <button id="scrollLeft" class="w-12 h-12 rounded-full bg-noir-700 hover:bg-noir-600 flex items-center justify-center transition-colors">
+            <i data-lucide="chevron-left" class="w-5 h-5 text-white"></i>
+          </button>
+          <button id="scrollRight" class="w-12 h-12 rounded-full bg-brand-500 hover:bg-brand-600 flex items-center justify-center transition-colors glow-orange">
+            <i data-lucide="chevron-right" class="w-5 h-5 text-white"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catering Section -->
+  <section id="catering" class="py-24 lg:py-32 catering-gradient relative overflow-hidden">
+    <div class="absolute inset-0 hero-pattern opacity-50"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="fade-up text-sushi-400 text-sm font-semibold tracking-widest uppercase">Catering</span>
+          <h2 class="fade-up stagger-1 font-display text-4xl sm:text-5xl font-bold text-white mt-3">Make Your Event <span class="text-brand-400">Unforgettable</span></h2>
+          <p class="fade-up stagger-2 text-noir-300 text-lg mt-6 leading-relaxed">
+            From office lunches to birthday celebrations — our catering brings the Ikigai experience to you. Sushi platters, hibachi combos, poke bowls, and all your favorites made fresh.
+          </p>
+          
+          <div class="fade-up stagger-3 space-y-4 mt-8">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-sushi-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="utensils" class="w-5 h-5 text-sushi-400"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Custom Sushi Platters</h4>
+                <p class="text-noir-400 text-sm mt-0.5">Hand-crafted rolls and nigiri arranged beautifully for any event size.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="flame" class="w-5 h-5 text-brand-400"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Hibachi Packages</h4>
+                <p class="text-noir-400 text-sm mt-0.5">Buttery hibachi entrees with all the fixings — crowd-pleasing guaranteed.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-sushi-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <i data-lucide="users" class="w-5 h-5 text-sushi-400"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold">Serves Any Size Group</h4>
+                <p class="text-noir-400 text-sm mt-0.5">From 5-person meetings to 200-guest events — we scale to your needs.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-up stagger-4 mt-10 flex flex-wrap gap-4">
+            <a href="tel:+17279990444" class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 glow-orange">
+              <i data-lucide="phone" class="w-5 h-5"></i>
+              Call to Cater
+            </a>
+          </div>
+        </div>
+
+        <div class="fade-up relative">
+          <div class="relative rounded-3xl overflow-hidden">
+            <img src="http://static.photos/food/640x360/150" alt="Catering" class="w-full h-[400px] lg:h-[500px] object-cover rounded-3xl">
+            <div class="absolute inset-0 bg-gradient-to-t from-noir-950/60 to-transparent"></div>
+          </div>
+          <div class="absolute -bottom-6 -left-6 bg-noir-800 rounded-2xl p-5 border border-noir-700 max-w-xs">
+            <div class="flex items-center gap-3 mb-2">
+              <i data-lucide="quote" class="w-6 h-6 text-brand-400"></i>
+              <span class="text-noir-400 text-xs">Verified Review</span>
+            </div>
+            <p class="text-noir-200 text-sm italic leading-relaxed">"I catered lunch from Ikigai for a work event and it was a huge hit! We all loved the sushi, wings, crab rangoon and egg noodles!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catering Modal -->
+  <div id="cateringModal" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-noir-950/80 backdrop-blur-sm" onclick="this.parentElement.classList.add('hidden')"></div>
+    <div class="relative bg-noir-900 rounded-3xl p-8 max-w-lg w-full border border-noir-700 max-h-[90vh] overflow-y-auto">
+      <button onclick="document.getElementById('cateringModal').classList.add('hidden')" class="absolute top-4 right-4 text-noir-400 hover:text-white">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <h3 class="font-display text-2xl font-bold text-white mb-2">Catering Inquiry</h3>
+      <p class="text-noir-400 text-sm mb-6">Tell us about your event and we'll get back to you within 24 hours!</p>
+      <form id="cateringForm" class="space-y-4">
+        <div>
+          <label class="text-noir-300 text-sm font-medium block mb-1.5">Your Name *</label>
+          <input type="text" required class="w-full bg-noir-800 border border-noir-700 rounded-xl px-4 py-3 text-white placeholder-noir-500 focus:brand-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors" placeholder="John Smith">
+        </div>
+        <div>
+          <label class="text-noir-300 text-sm font-medium block mb-1.5">Email *</label>
+          <input type="email" required class="w-full bg-noir-800 border border-noir-700 rounded-xl px-4 py-3 text-white placeholder-noir-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors" placeholder="john@email.com">
+        </div>
+        <div>
+          <label class="text-noir-300 text-sm font-medium block mb-1.5">Phone</label>
+          <input type="tel" class="w-full bg-noir-800 border border-noir-700 rounded-xl px-4 py-3 text-white placeholder-noir-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors" placeholder="(727) 999-0444">
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-noir-300 text-sm font-medium block mb-1.5">Event Date</label>
+            <input type="date" class="w-full bg-noir-800 border border-noir-700 rounded-xl px-4 py-3 text-white focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors">
+          </div>
+          <div>
+            <label class="text-noir-300 text-sm font-medium block mb-1.5">Guest Count</label>
+            <input type="number" class="w-full bg-noir-800 border border-noir-700 rounded-xl px-4 py-3 text-white placeholder-noir-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors" placeholder="25">
+          </div>
+        </div>
+        <div>
+          <label class="text-noir-300 text-sm font-medium block mb-1.5">Tell us about your event</label>
+          <textarea rows="3" class="w-full bg-noir-800 border border-noir-700 rounded-xl px-4 py-3 text-white placeholder-noir-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors resize-none" placeholder="Office lunch, birthday, corporate event..."></textarea>
+        </div>
+        <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white py-3.5 rounded-xl font-bold text-lg transition-all hover:scale-[1.02]">
+          Submit Inquiry
+        </button>
+        <div id="cateringSuccess" class="hidden text-center py-4">
+          <div class="w-16 h-16 rounded-full bg-sushi-500/20 flex items-center justify-center mx-auto mb-3">
+            <i data-lucide="check" class="w-8 h-8 text-sushi-400"></i>
+          </div>
+          <h4 class="text-white font-bold text-lg">Thank You!</h4>
+          <p class="text-noir-400 text-sm mt-1">We'll get back to you within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 lg:py-32 bg-noir-950 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div class="fade-up order-2 lg:order-1">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl overflow-hidden h-64">
+              <img src="http://static.photos/food/640x360/160" alt="Interior" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="rounded-2xl overflow-hidden h-64 mt-8">
+              <img src="http://static.photos/food/640x360/170" alt="Sushi making" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="rounded-2xl overflow-hidden h-64">
+              <img src="http://static.photos/food/640x360/180" alt="Hibachi" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+            <div class="rounded-2xl overflow-hidden h-64 mt-8">
+              <img src="http://static.photos/food/640x360/190" alt="Poke bowl" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700">
+            </div>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <span class="fade-up text-brand-400 text-sm font-semibold tracking-widest uppercase">Our Story</span>
+          <h2 class="fade-up stagger-1 font-display text-4xl sm:text-5xl font-bold text-white mt-3">A Reason for <span class="text-brand-400">Being</span></h2>
+          <p class="fade-up stagger-2 text-noir-300 text-lg mt-6 leading-relaxed">
+            <em class="text-brand-400">Ikigai</em> — a Japanese concept meaning "a reason for being." And that's exactly what we bring to every roll, every bowl, every interaction.
+          </p>
+          <p class="fade-up stagger-3 text-noir-400 mt-4 leading-relaxed">
+            What started as a food truck dream has grown into St. Petersburg's favorite sushi spot. We're a small, family-owned restaurant that takes pride in fresh ingredients, bold flavors, and making every customer feel like family. From our famous Volcano Roll to our perfectly seasoned hibachi — everything is made with love and served with a smile.
+          </p>
+          
+          <div class="fade-up stagger-4 grid grid-cols-2 gap-6 mt-10">
+            <div class="bg-noir-900 rounded-2xl p-5 border border-noir-800">
+              <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center mb-3">
+                <i data-lucide="heart" class="w-5 h-5 text-brand-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Made with Love</h4>
+              <p class="text-noir-500 text-sm mt-1">Every dish crafted with passion and care.</p>
+            </div>
+            <div class="bg-noir-900 rounded-2xl p-5 border border-noir-800">
+              <div class="w-10 h-10 rounded-xl bg-sushi-500/20 flex items-center justify-center mb-3">
+                <i data-lucide="leaf" class="w-5 h-5 text-sushi-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Always Fresh</h4>
+              <p class="text-noir-500 text-sm mt-1">Premium ingredients, never compromised.</p>
+            </div>
+            <div class="bg-noir-900 rounded-2xl p-5 border border-noir-800">
+              <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center mb-3">
+                <i data-lucide="smile" class="w-5 h-5 text-brand-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Good Energy</h4>
+              <p class="text-noir-500 text-sm mt-1">Friendly vibes that keep you coming back.</p>
+            </div>
+            <div class="bg-noir-900 rounded-2xl p-5 border border-noir-800">
+              <div class="w-10 h-10 rounded-xl bg-sushi-500/20 flex items-center justify-center mb-3">
+                <i data-lucide="map-pin" class="w-5 h-5 text-sushi-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">St. Pete Local</h4>
+              <p class="text-noir-500 text-sm mt-1">Proudly serving our community for 10+ years.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Order Section -->
+  <section id="order" class="py-24 lg:py-32 cta-section relative overflow-hidden">
+    <div class="absolute inset-0 hero-pattern"></div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+      <div class="fade-up inline-flex items-center gap-2 bg-brand-500/20 border border-brand-500/30 rounded-full px-4 py-1.5 mb-6">
+        <i data-lucide="zap" class="w-4 h-4 text-brand-400"></i>
+        <span class="text-brand-300 text-sm font-medium">Fast Online Ordering</span>
+      </div>
+      <h2 class="fade-up stagger-1 font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">Ready for the <span class="text-brand-400">Best Sushi</span> in St. Pete?</h2>
+      <p class="fade-up stagger-2 text-noir-300 text-xl mt-6 max-w-2xl mx-auto">Order online for pickup or delivery. Fresh, fast, and made just for you.</p>
+      
+      <div class="fade-up stagger-3 flex flex-wrap justify-center gap-4 mt-10">
+        <a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 bg-white text-noir-900 px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 hover:shadow-2xl">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          Order Pickup
+          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+        <a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:scale-105 glow-orange">
+          <i data-lucide="truck" class="w-5 h-5"></i>
+          Order Delivery
+          <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <div class="fade-up stagger-4 flex flex-wrap justify-center gap-8 mt-10 pt-8 border-t border-noir-700/50">
+        <div class="flex items-center gap-2">
+          <i data-lucide="clock" class="w-5 h-5 text-sushi-400"></i>
+          <span class="text-noir-300 text-sm">Ready in 15 min avg</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5 text-sushi-400"></i>
+          <span class="text-noir-300 text-sm">Secure online payment</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-5 h-5 text-sushi-400"></i>
+          <span class="text-noir-300 text-sm">Made fresh to order</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location -->
+  <section id="contact" class="py-24 lg:py-32 bg-noir-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="fade-up text-brand-400 text-sm font-semibold tracking-widest uppercase">Find Us</span>
+        <h2 class="fade-up stagger-1 font-display text-4xl sm:text-5xl font-bold text-white mt-3">Come <span class="text-brand-400">Visit</span> Us</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Map -->
+        <div class="fade-up lg:col-span-2 rounded-2xl overflow-hidden h-[400px] bg-noir-900 border border-noir-800">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3523.7845789123456!2d-82.6868244!3d27.8214241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88c2e31d60195623%3A0xa76e2d7a6b7c5079!2sIkigai%20Sushi%20Hibachi%20and%20Poke!5e0!3m2!1sen!2sus!4v1749495600000!5m2!1sen!2sus"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ikigai Sushi Hibachi and Poke on Google Maps"
+            class="grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+          </iframe>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="space-y-6">
+          <div class="fade-up bg-noir-900 rounded-2xl p-6 border border-noir-800 hover:border-brand-500/30 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center">
+                <i data-lucide="map-pin" class="w-5 h-5 text-brand-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Location</h4>
+            </div>
+            <a href="https://www.google.com/maps/place/Ikigai+Sushi+Hibachi+and+Poke/@27.8214241,-82.6868301,17z" target="_blank" rel="noopener noreferrer" class="text-noir-300 text-sm hover:text-brand-400 transition-colors">4195 54th Ave N, Unit E</a>
+            <p class="text-noir-300 text-sm mt-1">St. Petersburg, FL 33714</p>
+            <p class="text-noir-500 text-xs mt-1">Lealman / Gateway area</p>
+          </div>
+
+          <div class="fade-up stagger-1 bg-noir-900 rounded-2xl p-6 border border-noir-800 hover:border-brand-500/30 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-sushi-500/20 flex items-center justify-center">
+                <i data-lucide="clock" class="w-5 h-5 text-sushi-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Hours</h4>
+            </div>
+            <div class="space-y-1.5 text-sm">
+              <div class="flex justify-between">
+                <span class="text-noir-400">Mon - Thu</span>
+                <span class="text-noir-200 font-medium">11am - 9pm</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-noir-400">Fri - Sat</span>
+                <span class="text-noir-200 font-medium">11am - 10pm</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-noir-400">Sunday</span>
+                <span class="text-noir-200 font-medium">12pm - 8pm</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-up stagger-2 bg-noir-900 rounded-2xl p-6 border border-noir-800 hover:border-brand-500/30 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-500/20 flex items-center justify-center">
+                <i data-lucide="phone" class="w-5 h-5 text-brand-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Contact</h4>
+            </div>
+            <a href="tel:+17279990444" class="text-brand-400 text-lg font-semibold hover:text-brand-300 transition-colors">(727) 999-0444</a>
+            <p class="text-noir-500 text-xs mt-1">Call or walk in to order</p>
+          </div>
+
+          <div class="fade-up stagger-3 bg-noir-900 rounded-2xl p-6 border border-noir-800 hover:border-brand-500/30 transition-colors">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 rounded-xl bg-sushi-500/20 flex items-center justify-center">
+                <i data-lucide="share-2" class="w-5 h-5 text-sushi-400"></i>
+              </div>
+              <h4 class="text-white font-semibold">Follow Us</h4>
+            </div>
+            <div class="flex gap-3">
+              <a href="#" class="w-10 h-10 rounded-xl bg-noir-800 hover:bg-brand-500/20 flex items-center justify-center transition-colors group">
+                <i data-lucide="instagram" class="w-5 h-5 text-noir-400 group-hover:text-brand-400 transition-colors"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-xl bg-noir-800 hover:bg-brand-500/20 flex items-center justify-center transition-colors group">
+                <i data-lucide="facebook" class="w-5 h-5 text-noir-400 group-hover:text-brand-400 transition-colors"></i>
+              </a>
+              <a href="#" class="w-10 h-10 rounded-xl bg-noir-800 hover:bg-brand-500/20 flex items-center justify-center transition-colors group">
+                <i data-lucide="twitter" class="w-5 h-5 text-noir-400 group-hover:text-brand-400 transition-colors"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-noir-950 border-t border-noir-800 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center">
+              <span class="text-white font-bold text-lg font-display">IK</span>
+            </div>
+            <div>
+              <span class="text-white font-display font-bold text-xl">Ikigai</span>
+              <span class="text-brand-400 text-xs block -mt-1 tracking-widest uppercase">Sushi & Hibachi</span>
+            </div>
+          </div>
+          <p class="text-noir-500 text-sm leading-relaxed">Finding your reason for being — one bite at a time. St. Petersburg's favorite sushi spot since 2017.</p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#menu" class="text-noir-400 hover:text-brand-400 text-sm transition-colors">Menu</a></li>
+            <li><a href="#reviews" class="text-noir-400 hover:text-brand-400 text-sm transition-colors">Reviews</a></li>
+            <li><a href="#catering" class="text-noir-400 hover:text-brand-400 text-sm transition-colors">Catering</a></li>
+            <li><a href="#about" class="text-noir-400 hover:text-brand-400 text-sm transition-colors">Our Story</a></li>
+            <li><a href="https://www.google.com/searchviewer/42?cvd=CLw_EicKJeICIjIgEhkiF9LX29IPEQoNL2cvMTFmN3I2ZG53ORgAOgMI8A0%3D&hl=en-EG&gl=eg&fo_m=MfohQo559jFvMUOzJVpjPL1YMfZ3bInYwBDuMfaXTPp5KXh-&utm_source=tactile&gei=DT4oauSzGqCnkdUPz9qjsAo&ei=DT4oauSzGqCnkdUPz9qjsAo&fo_s=OA,SOE&opi=79508299&ebb=1&cs=0&foub=mcpp" target="_blank" rel="noopener noreferrer" class="text-noir-400 hover:text-brand-400 text-sm transition-colors">Order Online</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Popular Items</h4>
+          <ul class="space-y-2">
+            <li><span class="text-noir-400 text-sm">🌋 Volcano Roll</span></li>
+            <li><span class="text-noir-400 text-sm">🐉 Dragon Roll</span></li>
+            <li><span class="text-noir-400 text-sm">🍗 Chicken Hibachi</span></li>
+            <li><span class="text-noir-400 text-sm">🥟 Pork Bao Buns</span></li>
+            <li><span class="text-noir-400 text-sm">🍣 Tuna Poke Bowl</span></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-semibold mb-4">Newsletter</h4>
+          <p class="text-noir-500 text-sm mb-3">Get specials & new menu items first.</p>
+          <form id="newsletterForm" class="flex gap-2">
+            <input type="email" placeholder="Email" class="flex-1 bg-noir-900 border border-noir-700 rounded-xl px-4 py-2.5 text-white text-sm placeholder-noir-500 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 outline-none transition-colors min-w-0">
+            <button type="submit" class="bg-brand-500 hover:bg-brand-600 text-white px-4 py-2.5 rounded-xl font-semibold text-sm transition-colors shrink-0">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+          <div id="newsletterSuccess" class="hidden text-sushi-400 text-sm mt-2">✓ Subscribed!</div>
+        </div>
+      </div>
+
+      <div class="border-t border-noir-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-noir-600 text-sm">© 2024 Ikigai Sushi & Hibachi. All rights reserved.</p>
+        <p class="text-noir-700 text-xs">Made with ❤️ in St. Petersburg, FL</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // ---- NAVBAR SCROLL ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('nav-scrolled');
+      } else {
+        navbar.classList.remove('nav-scrolled');
+      }
+    });
+
+    // ---- MOBILE MENU ----
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // ---- SCROLL ANIMATIONS ----
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ---- COUNTER ANIMATION ----
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          let current = 0;
+          const step = Math.ceil(target / 40);
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + (target >= 50 ? '+' : target === 15 ? ' min' : '+');
+            if (target === 396) el.textContent = current + '+';
+          }, 30);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+    // ---- MENU TABS ----
+    const tabs = document.querySelectorAll('.menu-tab');
+    const menuCards = document.querySelectorAll('.menu-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => {
+          t.classList.remove('active', 'bg-brand-500', 'text-white');
+          t.classList.add('bg-noir-800', 'text-noir-300');
+        });
+        tab.classList.add('active', 'bg-brand-500', 'text-white');
+        tab.classList.remove('bg-noir-800', 'text-noir-300');
+
+        const category = tab.dataset.tab;
+        menuCards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.style.display = '';
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // ---- REVIEW SCROLL ----
+    const reviewsContainer = document.getElementById('reviewsContainer');
+    document.getElementById('scrollLeft').addEventListener('click', () => {
+      reviewsContainer.scrollBy({ left: -400, behavior: 'smooth' });
+    });
+    document.getElementById('scrollRight').addEventListener('click', () => {
+      reviewsContainer.scrollBy({ left: 400, behavior: 'smooth' });
+    });
+
+    // ---- CATERING FORM ----
+    document.getElementById('cateringForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const form = e.target;
+      form.querySelectorAll('input, textarea, button[type=submit]').forEach(el => el.style.display = 'none');
+      document.getElementById('cateringSuccess').classList.remove('hidden');
+      lucide.createIcons();
+    });
+
+    // ---- NEWSLETTER ----
+    document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      e.target.querySelector('input').style.display = 'none';
+      e.target.querySelector('button').style.display = 'none';
+      document.getElementById('newsletterSuccess').classList.remove('hidden');
+    });
+
+    // ---- SMOOTH ANCHOR SCROLL ----
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
